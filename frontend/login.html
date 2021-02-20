@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Авторизация</title >
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <style></style>
+</head>
+<body style="background-color:rgb(249,250,251)">
+
+<div class="container">
+    <h1>Авторизация</h1>
+    <form  method="POST">
+
+        <label class="left" for="username">Логин</label>
+        <input class=entry id="username" name="login" type="text"><br>
+        <br>
+        <label class="left" for="password">Пароль</label>
+        <input class="entry" id="password" name="password" type="password"><br>
+        <br>
+        <input class="submit_button" name="sign_up" type="button" value="Войти" style = " position: relative; margin-left: 70px" onclick="send()">
+        <input class="registration_button" name="registrate" type="button" value="Регистрация" style = " position: absolute; bottom: 10px; right: 20px;" onclick="document.location='registration.html'">
+
+    </form>
+
+
+<script>
+    function send()
+    {
+    var xmlhttp = new XMLHttpRequest();
+    var theUrl = "/api/login";
+    xmlhttp.open("POST", theUrl);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send(JSON.stringify({ "username" : document.getElementById("username").value, "password" : document.getElementById("password").value}));
+
+
+    xmlhttp.onload = function () {
+        if (xmlhttp.status != 200) {
+            alert("Неправильный логин или пароль.");
+        } else {
+            window.location.href = "/storageManagement.html";
+            window.location.replace("/storageManagement.html");
+        }
+    }
+
+}
+
+
+</script>
+
+
+</div>
+
+
+</body>
+</html>

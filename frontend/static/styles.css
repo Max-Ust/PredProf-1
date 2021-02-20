@@ -1,0 +1,78 @@
+@font-face {
+            font-family: mainFont;
+            src: url(Inter-VariableFont_slnt,wght.ttf);
+        }
+
+        * {
+            font-family: mainFont;
+        }
+
+        .container {
+            align-content: flex-start;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+
+            text-align: center;
+            width: 600px;
+            height: 300px;
+
+            background: white;
+            mix-blend-mode: normal;
+            border-radius: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+        }
+
+        .left {
+            
+            size: auto;
+            text-align: left;
+        }
+
+        form {
+
+        }
+
+        label {
+
+            display: inline-block;
+            width: 70px;
+            text-align: right;
+        }
+
+        .submit_button {
+            position: absolute;
+            width: 113px;
+            height: 33px;
+            border: none;
+            background: dodgerblue;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .registration_button {
+            position: absolute;
+            width: 113px;
+            height: 33px;
+            border: none;
+            background: dodgerblue;
+            border-radius: 4px;
+            color: white;
+        }
+
+        .entry {
+            outline: none;
+            border-color: black;
+            border-style: solid;
+            border-width: 1px;
+            border-radius: 3px;
+        }
+
+        .entry:focus {
+            outline: solid lightskyblue;
+            outline-width: 1px;
+
+        }

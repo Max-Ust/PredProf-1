@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>#menu__toggle {
+  opacity: 0;
+}
+.center{
+  position: absolute;
+  margin: auto;
+  width: 50%;
+  height: 50%;
+  -ms-transform: translate(-50%, -40%);
+  transform: translate(-50%, -50%);
+}
+.container {
+            align-content: flex-start;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            -ms-transform: translate(-50%, -40%);
+            transform: translate(-50%, -50%);
+ 
+            text-align: center;
+            min-width: 650px;
+            min-height: 100px;
+            width: auto;
+            height: auto;
+ 
+            background: white;
+            mix-blend-mode: normal;
+            border-radius: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+            box-shadow: 0px 4px 3px rgba(0, 0, 0, 0.25);
+        }
+#menu__toggle:checked ~ .menu__btn > span {
+  transform: rotate(45deg);
+}
+#menu__toggle:checked ~ .menu__btn > span::before {
+  top: 0;
+  transform: rotate(0);
+}
+#menu__toggle:checked ~ .menu__btn > span::after {
+  top: 0;
+  transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+  visibility: visible;
+  left: 0;
+}
+ 
+.menu__btn {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+ 
+  width: 26px;
+  height: 26px;
+ 
+  cursor: pointer;
+  z-index: 1;
+}
+ 
+.bt1{
+width: 160px;
+height: 100px;
+ 
+background: #176997;
+border-radius: 4px;
+position: absolute;
+bottom: 70%;
+right: 33%;
+
+font-size: large;
+}
+
+.bt2{
+width: 160px;
+height: 100px;
+ 
+background: #176997;
+border-radius: 4px;
+position: absolute;
+bottom: 70%;
+right: 16%;
+
+font-size: large;
+}
+
+.bt3{
+width: 160px;
+height: 100px;
+ 
+background: #176997;
+border-radius: 4px;
+position: absolute;
+bottom: 70%;
+right: 75%;
+
+font-size: large;
+}
+
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+  display: block;
+  position: absolute;
+ 
+  width: 100%;
+  height: 2px;
+ 
+  background-color: #616161;
+ 
+  transition-duration: .25s;
+}
+.menu__btn > span::before {
+  content: '';
+  top: -8px;
+}
+.menu__btn > span::after {
+  content: '';
+  top: 8px;
+}
+ 
+.menu__box {
+  display: block;
+  position: fixed;
+  visibility: hidden;
+  top: 0;
+  left: -100%;
+ 
+  width: 300px;
+  height: 100%;
+ 
+  margin: 0;
+  padding: 80px 0;
+ 
+  list-style: none;
+ 
+  background-color: #ECEFF1;
+  box-shadow: 1px 0px 6px rgba(0, 0, 0, .2);
+ 
+  transition-duration: .25s;
+}
+ 
+.menu__item {
+  display: block;
+  padding: 12px 24px;
+ 
+  color: #333;
+ 
+  font-family: 'Roboto', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+ 
+  text-decoration: none;
+ 
+  transition-duration: .25s;
+}
+.menu__item:hover {
+  background-color: #CFD8DC;
+}
+
+table {
+        width: 40%;
+        position: absolute;
+        top: 35%;
+
+        border-left: 5px solid black;
+        border-top: 5px solid black;
+        border-bottom: 5px solid black;
+      }
+
+        td {
+          padding: 5px;
+          text-align: center;
+          
+          font-size: 20pt;
+
+          border-top: 5px solid black;
+          border-right: 5px solid black;
+
+        }
+
+        th {
+          padding: 5px;
+          text-align: center;
+
+          font-size: 30pt;
+
+          border-right: 5px solid black;
+        }
+</style>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    
+</head>
+<body>
+ 
+  <div id='org_div2'></div>
+  <button type="button" onclick="add()" class='bt1'>Добавить строку</button>
+  <button type="button" onclick="send()" class='bt2'>Отправить накладную</button>
+  <button type="button" onclick="refresh()" class='bt3'>Обновить список</button>
+  <div class="hamburger-menu">
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+    <ul class="menu__box">
+      <li><a class="menu__item" href="storageManagement.html">Главная</a></li>
+ 
+      <li><a class="menu__item" href="polzovateli.html">Пользователи</a></li>
+ 
+    </ul>
+  </div>
+
+
+  <table id = "mytable2">
+    <tr>
+      <th>№ п/п</th>
+      <th>Наименование</th>
+      <th>Размер В * Ш * Г, мм</th>
+      <th>Масса, кг</th>
+      <th>Ячейка</th>
+      <th></th>
+    </tr>
+  </table>
+
+  <table id = "mytable3"; style="right: 11%;">
+    <tr>
+      <th>Название</th>
+      <th>Длина</th>
+      <th>Ширина</th>
+      <th>Высота</th>
+      <th>Масса</th>
+    </tr>
+  </table>
+  
+<script>
+    function add() {
+
+      var table = document.getElementById("mytable3");
+      var row = table.insertRow(1);
+
+      var cell1 = row.insertCell(0);
+      var cell2 = row.insertCell(1);
+      var cell3 = row.insertCell(2);
+      var cell4 = row.insertCell(3);
+      var cell5 = row.insertCell(4);
+      cell1.innerHTML = '<input type = "text" name="naming" />';
+      cell2.innerHTML = '<input type = "number" name="lengthth"/>';
+      cell3.innerHTML = '<input type = "number" name="widthth"/>';
+      cell4.innerHTML = '<input type = "number" name="heigthth"/>';
+      cell5.innerHTML = '<input type = "number" name="weigthth"/>';
+    }
+    </script>
+
+<script>
+  function send() {
+
+    var data = [];
+    var table = document.getElementById("mytable3");
+    
+    for(i = 1; i < table.rows.length; i++) {
+
+          if (document.getElementsByName("weigthth")[i-1].value == "" ||  document.getElementsByName("heigthth")[i-1].value == "" ||  document.getElementsByName("widthth")[i-1].value == "" ||  document.getElementsByName("lengthth")[i-1].value == "" ||  document.getElementsByName("naming")[i-1].value == "") {
+            alert("Заполните все значения!");
+            return;
+          }
+
+          var list = {
+            "weight": document.getElementsByName("weigthth")[i-1].value,
+            "height": document.getElementsByName("heigthth")[i - 1].value,
+            "width": document.getElementsByName("widthth")[i - 1].value,
+            "length": document.getElementsByName("lengthth")[i - 1].value,
+            "name": document.getElementsByName("naming")[i - 1].value
+          }
+          data.push(list);
+
+    }
+
+    while (table.rows[1]) {
+       table.deleteRow(1);
+    }
+
+    fetch('/api/addProducts', { method: 'POST', body: JSON.stringify(data) ,headers: {
+		'Content-type': 'application/json; charset=UTF-8'
+	}})
+           .then(response => {
+            
+              return response.json().then(function(ar){
+
+                console.log(ar);
+
+
+              })
+              
+              })
+              .catch(function(err) {
+                  console.info(err + " url: " + url);
+              });
+              
+              refresh();
+  }
+  </script>
+
+    <script>
+
+function refresh() {      
+
+    fetch('/api/getProducts', { method: 'GET' })
+           .then(response => {
+            
+              if (response.redirected) {
+                  window.location.href = response.url;
+              }
+              
+              return response.json().then(function(ar){
+
+                console.log(ar);
+
+              var table = document.getElementById("mytable2");
+
+              while (table.rows[1]) {
+                 table.deleteRow(1);
+}
+
+              for(i = ar.length - 1; i >= 0; i--)
+              {
+                  var row = table.insertRow(1);
+
+
+                  var cell1 = row.insertCell(0);
+                  var cell2 = row.insertCell(1);
+                  var cell3 = row.insertCell(2);
+                  var cell4 = row.insertCell(3);
+                  var cell5 = row.insertCell(4);
+                  var cell6 = row.insertCell(5);
+                  cell1.innerHTML = i + 1;
+                  cell2.innerHTML = ar[i]['product']['name'];
+                  cell3.innerHTML = ar[i]['product']['height'] + '*' + ar[i]['product']['width'] + '*' + ar[i]['product']['length'];
+                  cell4.innerHTML = ar[i]['product']['weight'];
+                  cell5.innerHTML = ar[i]['string_address'];
+                  cell6.innerHTML = '<input type = "button" value="Выдать" onclick=del("'+ar[i]['product']['id']+'")>';
+              } 
+              })
+              
+              })
+              .catch(function(err) {
+                  console.info(err);
+              });
+            }
+  refresh();
+  </script>
+  <script>
+
+    function del(id) {
+      fetch('/api/deleteProducts', { method: 'POST', body: JSON.stringify([id]), headers: {
+		'Content-type': 'application/json; charset=UTF-8'
+	}})
+           .then(response => {
+            
+              return response.json().then(function(ar){
+
+                console.log(ar);
+
+
+              })
+              
+              })
+              .catch(function(err) {
+                  console.info(err);
+              });
+
+         refresh();   
+    }
+
+  </script>
+  
+</body>
+</html>

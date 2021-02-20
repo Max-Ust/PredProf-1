@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title >
+    <link href="{{ url_for('static', filename='styles.css') }}" rel="stylesheet">
+    <style></style>
+</head>
+<body style="background-color:rgb(249,250,251)">
+
+<div class="container">
+    <h1>Регистрация</h1>
+    <form>
+
+        <label class="left" for="login">Логин</label>
+        <input class=entry id="login" name="login" type="text"><br>
+        <br>
+        <label class="left" for="password">Пароль</label>
+        <input class="entry" id="password" name="password" type="password"><br>
+        <br>
+        <label class="left" for="contact">Контакт</label>
+        <input class="entry" id="contact" name="contact" type="text"><br>
+
+        <br>
+        <input class="submit_button" onclick="send()" name="sign_up" type="button" value="Зарегистрироваться" style = "width: auto; position: relative; margin-left: 70px">
+
+    </form>
+<script>
+    function send()
+    {
+    var xmlhttp = new XMLHttpRequest();
+    var theUrl = "/api/signup";
+    var params = "?password=" + document.getElementById("password").value + "&name=" + document.getElementById("login").value + "&contact=" + document.getElementById("contact").value;
+    xmlhttp.open("GET", theUrl+params);
+    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    xmlhttp.send();
+
+
+    xmlhttp.onload = function () {
+        if (xmlhttp.status != 200) {
+            alert("Произошла ошибка регистрации, проверьте правильность введённых данных.");
+        } else {
+            window.location.href = "/";
+            window.location.replace("/");
+        }
+    }
+
+}
+
+
+</script>
+</div>
+
+
+</body>
+</html>
